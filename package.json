@@ -1,0 +1,29 @@
+{
+  "name": "dary",
+  "version": "1.0.0",
+  "main": "es/index.js",
+  "types": "lib/index.ts",
+  "exports": {
+    "import": "./lib/index.ts"
+  },
+  "private": false,
+  "scripts": {
+    "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --target=es6  --bundle --external:querystring-number --format=esm --minify --splitting"
+  },
+  "devDependencies": {
+    "fs-extra": "^9.1.0",
+    "rollup": "^1.24.0",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "rollup-plugin-uglify": "^6.0.3",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymzuiku/dary.git"
+  },
+  "bugs": {
+    "url": "git+https://github.com/ymzuiku/dary.git"
+  },
+  "homepage": "git+https://github.com/ymzuiku/dary.git"
+}

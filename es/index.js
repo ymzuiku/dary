@@ -1,0 +1,1 @@
+function i(n){return(e,...a)=>{if(typeof e=="string"||e.addEventListener){let l=document.createElement(n);return l.append(e,...a),l}let t=Object.assign(document.createElement(n),e);return a&&a.length&&t.append(...a),t}}var p=new Proxy({modify},{get(n,e){return n[e]||(n[e]=i(e)),n[e]}});export{p as dary};
