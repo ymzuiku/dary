@@ -70,4 +70,28 @@ const ele = dary.div(null, eleA, eleB);
 const ele = dary.div(eleA);
 ```
 
+忽略某些不应该插入到 DOM 中的值
+
+参考 React 中 JSX 的实现，我们需要忽略 boolean 插入 DOM 中:
+
+```js
+// 拦截函数如下：
+const filterElement = (el: any) => {
+  if (typeof el === "boolean" || el === void 0 || el === null) {
+    return false;
+  }
+  return true;
+};
+```
+
+有了这个拦截，我们得以使用以下方式组合代码：
+
+```js
+// 若 isShow 成立，插入 eleA，否则不插入任何值
+const ele = dary.div(isShow && eleA);
+
+// 这样以下假值可以正常插入到元素中
+const ele = dary.div(0, "false", "", "0");
+```
+
 仅此而已，保持简单

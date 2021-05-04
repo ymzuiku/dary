@@ -1,6 +1,6 @@
 {
   "name": "dary",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "es/index.js",
   "types": "lib/index.ts",
   "exports": {
