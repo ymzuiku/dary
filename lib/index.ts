@@ -1,50 +1,68 @@
-type PartialDetail<T> = {
-  [P in keyof T]?: Partial<T[P]>;
+import { createEle } from "./createEl";
+export { nextState } from "vanilla-ob";
+
+type PartialFn<T> = {
+  [P in keyof T]?: Partial<T[P]> | (() => Partial<T[P]>);
 };
 
-const filterElement = (el: any) => {
-  if (typeof el === "boolean" || el === void 0 || el === null) {
-    return false;
-  }
-  return true;
+type AttrFn = (string | number) | (() => string | number);
+
+type ExportHTMLElement = {
+  [key: string]: AttrFn;
 };
 
-function createEle(tag: any) {
-  return (obj: any, ...children: any[]) => {
-    if (
-      typeof obj === "string" ||
-      typeof obj === "number" ||
-      typeof obj === "boolean" ||
-      obj.addEventListener
-    ) {
-      const el = document.createElement(tag);
-      el.append(...[obj, ...children].filter(filterElement));
-      return el;
-    }
-    const el = Object.assign(document.createElement(tag), obj);
-    if (children && children.length) {
-      el.append(...children.filter(filterElement));
-    }
-    return el;
-  };
-}
+type VanillaLifeProps = {
+  onAppend: (el: HTMLElement) => any;
+  onUpdate: (el: HTMLElement) => any;
+  onEntry: (el: HTMLElement) => any;
+  onRemove: (el: HTMLElement) => any;
+};
+
+type DaryProps<T> = PartialFn<T> | ExportHTMLElement | VanillaLifeProps;
 
 type DaryChildren = (Node | string | number | boolean)[];
 
-type Dary = {
-  [K in keyof HTMLElementTagNameMap]: (
-    obj?: PartialDetail<HTMLElementTagNameMap[K]>,
+interface ExHTMLElementTagNameMap extends HTMLElementTagNameMap {
+  [key: string]: HTMLElement;
+}
+
+type DaryBase = {
+  [K in keyof ExHTMLElementTagNameMap]: (
+    obj?: DaryProps<ExHTMLElementTagNameMap[K]>,
     ...children: DaryChildren
-  ) => HTMLElementTagNameMap[K];
+  ) => ExHTMLElementTagNameMap[K];
 };
 
 type DarySingle = {
-  [K in keyof HTMLElementTagNameMap]: (
+  [K in keyof ExHTMLElementTagNameMap]: (
     ...children: DaryChildren
-  ) => HTMLElementTagNameMap[K];
+  ) => ExHTMLElementTagNameMap[K];
 };
 
-export const dary: Dary & DarySingle = new Proxy({} as any, {
+type DaryModify = <T extends Element>(
+  target: T,
+  obj?: DaryProps<T>,
+  ...children: DaryChildren
+) => T;
+
+type DaryModifySingle = <T extends Element>(
+  target: T,
+  ...children: DaryChildren
+) => T;
+
+// type NextState = {
+//   nextState: typeof nextState;
+// };
+
+function modify(el: any, ...attrs: any[]) {
+  return (createEle as any)(el)(...attrs);
+}
+
+// modify.nextState = nextState;
+
+type Dary = DaryBase & DarySingle & DaryModify & DaryModifySingle;
+
+export const D: Dary = new Proxy(modify as any, {
   get(target, key) {
     if (!target[key]) {
       target[key] = createEle(key);

@@ -1,6 +1,6 @@
 {
   "name": "dary",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "es/index.js",
   "types": "lib/index.ts",
   "exports": {
@@ -8,7 +8,7 @@
   },
   "private": false,
   "scripts": {
-    "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --target=es6  --bundle --external:querystring-number --format=esm --minify --splitting"
+    "es": "esbuild --define:process.env.NODE_ENV=\\\"production\\\" lib/index.ts --outdir=es --target=es6  --bundle --external:vanilla-ob --external:vanilla-life --format=esm --minify --splitting"
   },
   "devDependencies": {
     "fs-extra": "^9.1.0",
@@ -25,5 +25,9 @@
   "bugs": {
     "url": "git+https://github.com/ymzuiku/dary.git"
   },
-  "homepage": "git+https://github.com/ymzuiku/dary.git"
+  "homepage": "git+https://github.com/ymzuiku/dary.git",
+  "dependencies": {
+    "vanilla-life": "^0.1.6",
+    "vanilla-ob": "^0.3.3"
+  }
 }
