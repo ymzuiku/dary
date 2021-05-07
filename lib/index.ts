@@ -11,11 +11,19 @@ type ExportHTMLElement = {
   [key: string]: AttrFn;
 };
 
+interface DaryEvent extends Event {
+  target: HTMLInputElement;
+  [key: string]: any;
+}
+
 type VanillaLifeProps = {
   onAppend: (el: HTMLElement) => any;
   onUpdate: (el: HTMLElement) => any;
   onEntry: (el: HTMLElement) => any;
   onRemove: (el: HTMLElement) => any;
+  oninput: (ev: DaryEvent) => any;
+  onchange: (ev: DaryEvent) => any;
+  onclick: (ev: DaryEvent) => any;
 };
 
 type DaryProps<T> = PartialFn<T> | ExportHTMLElement | VanillaLifeProps;
@@ -50,17 +58,11 @@ type DaryModifySingle = <T extends Element>(
   ...children: DaryChildren
 ) => T;
 
-// type NextState = {
-//   nextState: typeof nextState;
-// };
+type Dary = DaryBase & DarySingle & DaryModify & DaryModifySingle;
 
 function modify(el: any, ...attrs: any[]) {
   return (createEle as any)(el)(...attrs);
 }
-
-// modify.nextState = nextState;
-
-type Dary = DaryBase & DarySingle & DaryModify & DaryModifySingle;
 
 export const D: Dary = new Proxy(modify as any, {
   get(target, key) {

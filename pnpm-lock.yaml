@@ -8,11 +8,11 @@ specifiers:
   tslib: ^2.2.0
   typescript: ^4.2.4
   vanilla-life: ^0.1.6
-  vanilla-ob: ^0.3.3
+  vanilla-ob: ^0.3.5
 
 dependencies:
   vanilla-life: 0.1.6
-  vanilla-ob: 0.3.3
+  vanilla-ob: 0.3.5
 
 devDependencies:
   fs-extra: 9.1.0
@@ -329,6 +329,6 @@ packages:
     resolution: {integrity: sha512-vpzcZtGjhB1RfdAV6u+MthxS/4kRMuqDFqtOI2uoQlaKS2Iq9hSq462K4QMBnkh1kbMsgcaRVGhbrfkV8pV0AQ==}
     dev: false
 
-  /vanilla-ob/0.3.3:
-    resolution: {integrity: sha512-kZCVU4wIqzwznN31DmlmeY5h4omfsBI2IDrycfdl/fsBkd8ct3z9yNUOC0zMI+thiC2fjMC+FDiKfVu1QLNQ+Q==}
+  /vanilla-ob/0.3.5:
+    resolution: {integrity: sha512-zt9pvNgCBp9UJBAl+FWCOTBXMX04HWi72s9pL07DXtYsXePqeBNiXkxBiwjp+wwaZgat/1EpeUmBY33TVJWDnA==}
     dev: false

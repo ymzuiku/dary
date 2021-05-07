@@ -107,7 +107,7 @@ const ele = D.div(0, "false", "", "0");
 
 ## 生命周期
 
-dary 使用 vanilla-life 扩展了元素生命周期的功能
+dary 使用 [vanilla-life](https://github.com/ymzuiku/vanilla-life) 扩展了元素生命周期的功能
 
 ```ts
 const ele = D.div({
@@ -128,7 +128,7 @@ const ele = D.div({
 
 ## 动态属性
 
-dary 使用 vanilla-ob 扩展了动态属性的能力
+dary 使用 [vanilla-ob](https://github.com/ymzuiku/vanilla-ob) 扩展了动态属性的能力
 
 ```ts
 import { D, nextState } from "dary";
@@ -139,13 +139,14 @@ const state = {
 };
 // 把直接赋值改为函数返回值，此类属性为动态属性
 const ele = D.div({
+  className: "page",
   textContent: () => state.name,
 });
 
 // 修改状态
 state.name = "fish";
 // 派发更新
-nextState(ele);
+nextState(".page");
 ```
 
 仅此而已，保持简单

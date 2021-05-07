@@ -1,6 +1,6 @@
 {
   "name": "dary",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "main": "es/index.js",
   "types": "lib/index.ts",
   "exports": {
@@ -28,6 +28,6 @@
   "homepage": "git+https://github.com/ymzuiku/dary.git",
   "dependencies": {
     "vanilla-life": "^0.1.6",
-    "vanilla-ob": "^0.3.3"
+    "vanilla-ob": "^0.3.5"
   }
 }
